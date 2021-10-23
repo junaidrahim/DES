@@ -107,6 +107,7 @@ private:
 public:
     explicit DES(const std::array<std::string, 16> &round_keys);
     std::string run(const std::string& plain_text);
+    void reverse_keys();
 };
 
 

@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include <cmath>
+#include <algorithm>
+
 #include "DES.h"
 
 DES::DES(const std::array<std::string, 16> &round_keys) {
@@ -22,7 +24,17 @@ std::string DES::decimal_to_binary(uint64_t decimal) {
 }
 
 uint64_t DES::binary_to_decimal(const std::string& binary) {
-    return std::stoull(binary, nullptr, 2);
+    int decimal = 0;
+    int counter = 0;
+    int size = binary.length();
+    for(int i = size-1; i >= 0; i--)
+    {
+        if(binary[i] == '1'){
+            decimal += pow(2, counter);
+        }
+        counter++;
+    }
+    return decimal;
 }
 
 std::string DES::Xor(const std::string &a, const std::string &b) {
@@ -51,49 +63,47 @@ std::string DES::run(const std::string& plain_text) {
 
     for(int i=0; i<16; i++) {
         std::string right_expanded;
-        // 3.1. The right half of the plain text is expanded
         for(int j = 0; j < 48; j++) {
             right_expanded += right[DES::expansion_table[j]-1];
-        };  // 3.3. The result is xored with a key
+        };
 
-        std::string xored = DES::Xor(round_keys[i], right_expanded);
+        std::string xored = DES::Xor(DES::round_keys[i], right_expanded);
         std::string res;
 
-        // 3.4. The result is divided into 8 equal parts and passed
-        // through 8 substitution boxes. After passing through a
-        // substituion box, each box is reduces from 6 to 4 bits.
         for(int k=0;k<8; k++){
-            // Finding row and column indices to lookup the
-            // substituition box
             std::string row1= xored.substr(k*6,1) + xored.substr(k*6 + 5,1);
             auto row = DES::binary_to_decimal(row1);
             std::string col1 = xored.substr(k*6 + 1,1) + xored.substr(k*6 + 2,1) + xored.substr(k*6 + 3,1) + xored.substr(k*6 + 4,1);;
             auto col = DES::binary_to_decimal(col1);
-            uint64_t val = DES::substitution_boxes[i][row][col];
+            uint64_t val = DES::substitution_boxes[k][row][col];
             res += DES::decimal_to_binary(val);
         }
-        // 3.5. Another permutation is applied
+
         std::string perm2;
         for(int l = 0; l < 32; l++){
             perm2 += res[permutation_tab[l]-1];
         }
-        // 3.6. The result is xored with the left half
+
         xored = Xor(perm2, left);
-        // 3.7. The left and the right parts of the plain text are swapped
         left = xored;
+
         if(i < 15){
             std::string temp = right;
             right = xored;
             left = temp;
         }
     }
-    // 4. The halves of the plain text are applied
+
     std::string combined_text = left + right;
     std::string ciphertext;
-    // The inverse of the initial permuttaion is applied
+
     for(int i = 0; i < 64; i++){
         ciphertext+= combined_text[inverse_permutation[i]-1];
     }
-    //And we finally get the cipher text
+
     return ciphertext;
+}
+
+void DES::reverse_keys() {
+    std::reverse(this->round_keys.begin(), this->round_keys.end());
 }
