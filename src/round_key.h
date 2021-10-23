@@ -1,7 +1,3 @@
-//
-// Created by Junaid H  Rahim on 24/10/21.
-//
-
 #ifndef DES_ROUND_KEY_H
 #define DES_ROUND_KEY_H
 
