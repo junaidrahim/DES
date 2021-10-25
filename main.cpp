@@ -17,15 +17,11 @@ std::vector<std::string> cipher_decipher(const std::string& key, const std::stri
 
     auto des = DES(keys);
     std::string cipher_text = des.run(plaintext);
-    // std::cout << std::setw(25) << "Cipher Text : " << cipher_text << std::endl;
 
     des.reverse_keys();
     std::string decrypted_cipher_text = des.run(cipher_text);
-    // std::cout << std::setw(25) << "Decrypted Cipher Text : " << decrypted_cipher_text << std::endl;
 
     std::vector<std::string> encrypted_bytes;
-
-    // std::cout << plaintext.size() << std::endl;
 
     for(int i = 0; i < plaintext.size(); i += 8) {
         std::cout << cipher_text.substr(i, 8) << std::endl;
@@ -51,7 +47,10 @@ int main(int argc, char** argv) {
     }
 
     if(cmdl[{"-h", "--help"}]) {
-        std::cout << "help" << std::endl;
+        std::cout << "-v, --version        Display program version info and exit." << std::endl;
+        std::cout << "-f, --file TEXT      Takes a file as an input." << std::endl;
+        std::cout << "-o, --output TEXT    Writes the output to the specified file." << std::endl;
+        std::cout << "--help, -h           show help" << std::endl;
         exit(0);
     }
 
