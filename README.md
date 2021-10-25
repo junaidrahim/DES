@@ -18,7 +18,7 @@ Data Encryption Standard (DES) is a block cipher algorithm that takes plain text
   - [Table of Contents](#table-of-contents)
   - [Installation](#installation)
   - [Usage](#usage)
-  - [Uninstalling](#uninstalling)
+  - [Group Details](#group-details)
 
 ## Installation
 
@@ -61,6 +61,14 @@ OPTIONS:
 Plaintext
 ```
 
-## Uninstalling
+## Group Details
+1905642 - Sounak Mukherjee
+1905658 - Aditya Meharia
+1905667 - Sagnik Chaudhuri
+1905674 - Debmalya Chatterjee
+1905725 - Ujjwal Singh Shekhawat
+1905726 - Rohan Kumar
+1905828 - Pratyush Khuntia
+1905831 - Junaid Hefzur Rahim
 
-
+Submitted to Prof. Chittaranjan Pradhan
