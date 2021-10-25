@@ -53,6 +53,7 @@ Encrypt Text
 ./DES -f=../input.txt -o=./output.txt -e
 ```
 
+Decrypt Text
 ```bash
 ./DES -f=./output.txt -o=./decrypted.txt -d
 ```
