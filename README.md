@@ -62,13 +62,13 @@ Plaintext
 ```
 
 ## Group Details
-1905642 - Sounak Mukherjee
-1905658 - Aditya Meharia
-1905667 - Sagnik Chaudhuri
-1905674 - Debmalya Chatterjee
-1905725 - Ujjwal Singh Shekhawat
-1905726 - Rohan Kumar
-1905828 - Pratyush Khuntia
-1905831 - Junaid Hefzur Rahim
+1905642 - Sounak Mukherjee 
+1905658 - Aditya Meharia 
+1905667 - Sagnik Chaudhuri 
+1905674 - Debmalya Chatterjee 
+1905725 - Ujjwal Singh Shekhawat 
+1905726 - Rohan Kumar 
+1905828 - Pratyush Khuntia 
+1905831 - Junaid Hefzur Rahim 
 
 Submitted to Prof. Chittaranjan Pradhan
