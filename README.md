@@ -69,6 +69,6 @@ Plaintext
 1905725 - Ujjwal Singh Shekhawat <br>
 1905726 - Rohan Kumar <br>
 1905828 - Pratyush Khuntia <br>
-1905831 - Junaid Hefzur Rahim <br>
+1905831 - Junaid Rahim <br>
 
 Submitted to Prof. Chittaranjan Pradhan
