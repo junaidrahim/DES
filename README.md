@@ -33,7 +33,7 @@ cmake ..
 make
 ```
 
-This will build the `main` binaries in `build` directory.
+This will build the `DES` binary in `build` directory.
 
 ## Usage
 
