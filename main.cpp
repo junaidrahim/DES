@@ -6,13 +6,11 @@
 #include <vector>
 #include <sstream>
 
-#include "CLI11.hpp"
+#include "./src/argh.h"
 
 #include "src/round_key.h"
 #include "src/DES.h"
 #include "src/argh.h"
-
-// std::tuple <std::string, std::string> cipher_decipher(std::string*, std::string*);
 
 std::vector<std::string> cipher_decipher(const std::string& key, const std::string& plaintext) {
     auto keys = RoundKey::generate_keys(key);
@@ -41,13 +39,21 @@ std::vector<std::string> cipher_decipher(const std::string& key, const std::stri
 
 int main(int argc, char** argv) {
 
-    CLI::App app("DES");
-    app.set_version_flag("-v,--version", std::string("1.0"));
-    app.set_help_flag("-h,--help", std::string("displays this info"));
     std::string in_file, out_file;
-    CLI::Option *inf = app.add_option("-f,--file", in_file, "inputfile");
-    CLI::Option *outf = app.add_option("-o,--output", out_file, "outputfile");
-    CLI11_PARSE(app, argc, argv);
+
+    argh::parser cmdl(argv);
+
+    cmdl({"-f", "--file"}) >> in_file;
+    cmdl({"-o", "--output"}) >> out_file;
+    if(cmdl[{"-v", "--version"}]) {
+        std::cout << "ver1.0" << std::endl;
+        exit(0);
+    }
+
+    if(cmdl[{"-h", "--help"}]) {
+        std::cout << "help" << std::endl;
+        exit(0);
+    }
 
     if(in_file == "" || out_file == "") {
         std::cout << "files not provided use -h or --help for more info" << std::endl;
@@ -101,11 +107,6 @@ int main(int argc, char** argv) {
         }
     }
     fout << std::endl;
-
-    // std::cout << "using key : " << key << " on plain text : " << plaintext << std::endl;
-    // fout << "using key : " << key << " on plain text : " << plaintext << std::endl;
-    // res = cipher_decipher(key, plaintext_buffered);
-    // fout << "Cipher text: " << std::get<0>(res) << "\nDeciphered text: " << std::get<1>(res) << std::endl << std::endl;
 
     fout.close();
     fin.close();
